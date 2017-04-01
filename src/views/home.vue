@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-  import nvHead from '@/components/header.vue'
-  import nvSwiper from '@/components/swiper.vue'
+  import nvHead from '../components/header.vue'
+  import nvSwiper from '../components/swiper.vue'
   export default {
     components:{
       nvHead,
