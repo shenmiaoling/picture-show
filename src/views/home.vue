@@ -1,10 +1,8 @@
 <template>
   <div>
-    <nv-head></nv-head>
+    <nv-head page-type="首页"
+     :go-back="false"></nv-head>
     <nv-swiper></nv-swiper>
-    <router-link to="/preview">
-      <button>preview</button>
-    </router-link>
   </div>
 </template>
 <script>

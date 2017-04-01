@@ -3,7 +3,7 @@
     <div class="swiper-wrapper">
       <router-link to="/preview" class=
       'swiper-slide'>
-        <div style="background-image:url(http://lorempixel.com/1000/1000/nightlife/1)"></div>
+        <div style="background-image:url(http://lorempixel.com/1000/1000/nightlife/1)" class="swiper-image"></div>
       </router-link>
 
         <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1000/1000/nightlife/2)"></div>
@@ -62,4 +62,9 @@
       background-size: cover;
       height: 100%!important
   }
+  .swiper-image
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
 </style>

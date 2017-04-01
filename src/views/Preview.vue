@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="swiper-container gallery-top">
+    <nv-head page-type="模板预览" :go-back="true"></nv-head>
+    <div class="photo-count">1/8</div>
+    <div class="swiper-container gallery-top swiper-top">
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/1)"></div>
             <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/2)"></div>
@@ -19,40 +21,50 @@
     </div>
     <div class="swiper-container gallery-thumbs">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/1)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/2)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/3)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/4)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/5)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/6)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/7)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/8)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/9)"></div>
-            <div class="swiper-slide" style="background-image:url(http://lorempixel.com/1200/1200/nature/10)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/1)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/2)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/3)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/4)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/5)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/6)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/7)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/8)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/9)"></div>
+            <div class="swiper-slide swiper-thumbs" style="background-image:url(http://lorempixel.com/1200/1200/nature/10)"></div>
         </div>
     </div>
+    <nv-loading v-show="false"></nv-loading>
   </div>
 
 </template>
 <script>
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
+  import nvLoading from '@/components/loading.vue'
+  import nvHead from '@/components/header.vue'
   export default {
     mounted(){
-    var galleryTop = new Swiper('.gallery-top', {
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 10,
-    });
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-        spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        touchRatio: 0.2,
-        slideToClickedSlide: true
-    });
-    galleryTop.params.control = galleryThumbs;
-    galleryThumbs.params.control = galleryTop;
+      var galleryTop = new Swiper('.gallery-top', {
+          nextButton: '.swiper-button-next',
+          prevButton: '.swiper-button-prev',
+          spaceBetween: 10,
+      });
+      var galleryThumbs = new Swiper('.gallery-thumbs', {
+          spaceBetween: 10,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          touchRatio: 0.2,
+          slideToClickedSlide: true
+      });
+      galleryTop.params.control = galleryThumbs;
+      galleryThumbs.params.control = galleryTop;
+    },
+    updated(){
+      console.log('ready')
+    },
+    components: {
+      nvLoading,
+      nvHead
     }
   }
 </script>
@@ -69,6 +81,11 @@
         margin: 0;
         padding: 0;
     }
+    .photo-count
+      text-align center
+      margin 20px
+    .swiper-top
+      margin-top 20px
     .swiper-container {
         width: 100%;
         height: 300px;
@@ -89,11 +106,14 @@
         padding: 10px 0;
     }
     .gallery-thumbs .swiper-slide {
-        width: 25%;
+        width: 100px;
         height: 100%;
         opacity: 0.4;
     }
     .gallery-thumbs .swiper-slide-active {
         opacity: 1;
     }
+    .swiper-thumbs
+      height 100px!important
+      background-position center
 </style>
